@@ -1,3 +1,4 @@
+import pandas as pd
 import numpy as np
 
 def calculate_reduct(C, D):
@@ -30,24 +31,20 @@ def is_reduct(C, D, reduct):
     return True
 
 
-# Przykładowy system decyzyjny
-C = np.array([
-    [1, 0, 0, 1, 1],
-    [0, 1, 0, 1, 1],
-    [1, 0, 1, 0, 1],
-    [1, 0, 0, 1, 0],
-    [0, 1, 1, 1, 0],
-    [1, 1, 1, 0, 0]
-])
+fig1 = pd.DataFrame({
+    'b': [2, 2, 0, 1],
+    'c': [1, 2, 2, 1],
+    'd': [0, 1, 1, 1],
+    'dec': [0, 1, 2, 1]
+})
 
-D = np.array([
-    [1],
-    [0],
-    [1],
-    [0],
-    [1],
-    [1]
-])
+fig2 = pd.DataFrame({
+    'a1': ['wysoka', 'wysoka', 'wysoka', 'więcej niż średnia', 'więcej niż średnia', 'więcej niż średnia', 'wysoka', 'więcej niż średnia', 'więcej niż średnia'],
+    'a2': ['bliski', 'bliski', 'bliski', 'daleki', 'daleki', 'daleki', 'bliski', 'daleki', 'daleki'],
+    'a3': ['średni', 'średni', 'średni', 'silny', 'silny', 'lekki', 'średni', 'lekki', 'lekki'],
+    'dec': ['tak', 'tak', 'tak', 'nie pewne', 'nie', 'nie', 'tak', 'nie', 'tak']
+})
 
-reduct = calculate_reduct(C, D)
-print("Minimalny redukt:", reduct)
+reduct2 = calculate_reduct(fig2.iloc[:, :-1].values, fig2.iloc[:, -1].values.flatten())
+
+print("Zadanie 1.4: Redukt decyzyjny dla Fig2:", reduct2)
